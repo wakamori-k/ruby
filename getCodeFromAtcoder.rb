@@ -17,9 +17,9 @@ def htmlSpecialCharsDecode(line)#htmlの特殊文字をデコード
 end
 
 ########書き換える###################
-ID = "AtCoderID" #AtCoderのID
+ID = "atcoderID" #AtCoderのID
 SAVE_DIR = "./atcoder/" #ソースコードを保存する場所へのパス (注)最後の'/'も書く
-CONTEST_NAME = "arc" #"abc" または "arc"を指定
+CONTEST_NAME = "abc" #"arc" または "arc"を指定
 ###################################
 
 PAGEMAX = 100 #最大ページ数
@@ -60,7 +60,17 @@ while contest_num<CONTESTMAX && contest_continue==true do
 
         elsif line.include?("/tasks/") then
           filename = line[/a[r|b]c[0-9][0-9][0-9]\_./]
-
+          #末尾文字をA,B,C,Dに統一
+          if filename[-1]=='1' || filename[-1]=='a'
+            filename[-1]='A'
+          elsif filename[-1]=='2' || filename[-1]=='b'
+            filename[-1]='B'
+          elsif filename[-1]=='3' || filename[-1]=='c'
+            filename[-1]='C'
+          elsif filename[-1]=='4' || filename[-1]=='d'
+            filename[-1]='D'
+          end
+          
         elsif line.include?("td-selected") then
           next_lang_name = true
           
